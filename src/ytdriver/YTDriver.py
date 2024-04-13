@@ -45,6 +45,25 @@ class YTDriver:
         Close the underlying webdriver.
         """
         self.driver.close()
+    
+    def watch_video_by_link(self, url, duration=60):
+        """
+        Watch a YouTube video by URL.
+
+        ### Arguments:
+        - `url` (str): The URL of the YouTube video.
+        - `duration` (int): Duration in seconds to watch the video.
+        """
+        self.__log(f"Loading video URL: {url}")
+        self.driver.get(url)
+        try:
+            self.__check_video_availability()
+            self.__click_play_button()
+            self.__handle_ads()
+            self.__log(f"Watching video for {duration} seconds.")
+            sleep(duration)  # Watch the video for the specified duration
+        except WebDriverException as e:
+            self.__log(f"Error during video playback: {e}")
 
     def get_homepage(self, scroll_times=0):
         """

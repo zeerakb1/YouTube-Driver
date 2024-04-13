@@ -7,6 +7,7 @@ if __name__ == '__main__':
 
   # get videos from the youtube homepage
   videos = driver.get_homepage()
+  videos = driver.search_videos('sports')
 
   # play the top video from the homepage for 30 seconds
   driver.play(videos[0], 30)
